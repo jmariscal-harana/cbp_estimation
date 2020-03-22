@@ -2,3 +2,6 @@
 [submodule "Paper_cbp"]
 	path = Paper_cbp
 	url = https://github.com/jmariscal-harana/Paper_cbp
+[submodule "Paper_cbp_supplement"]
+	path = Paper_cbp_supplement
+	url = https://github.com/jmariscal-harana/Paper_cbp_supplement.git
