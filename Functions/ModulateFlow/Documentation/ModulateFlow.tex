@@ -1,0 +1,189 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%    ModulateFlow Manual										       %
+%                                                                      				%
+%    Latex Source Code                                                  %
+%                                                                     				%
+%    Jorge Mariscal-Harana, adapted from P.H. Charlton           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% SETUP DOCUMENT %%%%%
+
+\documentclass[12pt]{iopart}
+\usepackage[pdftex]{graphicx}
+\usepackage{color}
+\usepackage{harvard}
+\usepackage{multirow}
+\usepackage{epstopdf}
+\usepackage{adjustbox}
+\usepackage{enumitem}
+%\newcommand{\url}[1]{\textcolor{blue}{{\textit{#1}}}}
+\usepackage{setspace}
+\usepackage{scrextend}
+\newcommand{\thresh}{\textit{k} }
+\newcommand{\mean}[1]{\overline{#1}}
+\newcommand{\pc}[1]{\textcolor{red}{{\textit{#1}}}}
+\newcommand{\tb}[1]{\textcolor{blue}{{\textit{#1}}}}
+\newcommand{\ja}[1]{\textcolor{red}{{\textit{#1}}}}
+\newcommand{\eg}{\textit{e.g.} }
+\newcommand{\ie}{\textit{i.e.} }
+\newcommand{\mf}{\texttt{ModulateFlow}}
+\newcommand{\us}{\texttt{\_}}
+\usepackage{cite}
+\usepackage{array} % for tables
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage{rotating}
+
+\makeatletter
+\def\bstctlcite{\@ifnextchar[{\@bstctlcite}{\@bstctlcite[@auxout]}}
+\def\@bstctlcite[#1]#2{\@bsphack
+	\@for\@citeb:=#2\do{%
+		\edef\@citeb{\expandafter\@firstofone\@citeb}%
+		\if@filesw\immediate\write\csname #1\endcsname{\string\citation{\@citeb}}\fi}%
+	\@esphack}
+\makeatother
+
+% --------------- Making bibliography -------------- %
+
+% see: http://anorien.csc.warwick.ac.uk/mirrors/CTAN/macros/latex/contrib/IEEEtran/bibtex/IEEEtran_bst_HOWTO.pdf
+
+% and: http://tex.stackexchange.com/questions/164017/limiting-the-number-of-authors-in-the-references-with-ieeetran
+\usepackage{filecontents} % To make the bib-file
+
+\begin{filecontents}{refs.bib}
+	@IEEEtranBSTCTL{IEEEexample:BSTcontrol,
+		CTLuse_url = "no",
+		CTLuse_forced_etal       = "yes",
+		CTLmax_names_forced_etal = "3",
+		CTLnames_show_etal       = "1", 
+		CTLdash_repeated_names = "no" 
+	}
+	@article{paperOne,
+		author = "Author First and Author Second and Author Third and Author Fourth",
+		title = "Paper One Title",
+		journal = "Awesome Journal",
+		pages = "111--115",
+		year = 2013
+	}
+	@incollection{paperTwo,
+		author = "Author First and Author Second and Author Third",
+		title = "Paper Two Title",
+		booktitle = "Proc. of Collection",
+		pages = "222--225",
+		year = 2013
+	}
+\end{filecontents}
+
+
+
+\begin{document}
+
+\bstctlcite{IEEEexample:BSTcontrol}
+
+%%%%% TITLE AND AUTHORS %%%%%
+
+\title[J Mariscal-Harana \etal]{\mf{} \\ Modulating diastolic flow or velocity waveforms}
+
+\author{Jorge Mariscal-Harana} % $^{1,2}$
+
+\address{Department of Biomedical Engineering, King's College London, UK}
+
+% \ead{peter.charlton@kcl.ac.uk}
+
+%%%%% VERSION INFORMATION %%%%%
+
+%\vspace{10pt}
+%\begin{indented}
+%\item[]Draft from \today
+%\end{indented}
+
+%%%%% ABSTRACT %%%%%
+
+\begin{abstract}
+
+This report presents \mf, a script for modulating diastolic flow or velocity waveforms.
+
+\end{abstract}
+
+%%%%% KEYWORDS %%%%%
+
+% \noindent{\it Keywords}: respiratory modulation, biomedical signal processing, electrocardiography, photoplethysmography, respiratory rate
+
+%%%%% SUBMISSION TO JOURNAL %%%%%
+% \submitto{\PM}
+
+%%%%% SPACING %%%%%
+%\doublespacing
+
+%%%%% INTRODUCTION %%%%%
+
+\section{Summary}
+\label{sec:intro}
+
+Clinical blood flow or velocity waveform pre-processing can be difficult due to a low sampling rate (SR) and/or noise. 
+This report describes how \mf{} deals with these two common problems by (a) using a cubic spline interpolation for low SRs; and (b) modulating the flow or velocity waveform during diastole to eliminate noise after valve closure.
+
+\section{Methods}
+
+\mf{} consists of three stages: (i) waveform interpolation; (ii) noise thresholding; and (iii) downslope projection. The methods used at each stage are now described in turn.
+
+\subsection{Waveform interpolation}
+
+If the number of waveform datapoints is smaller than 100, a cubic spline interpolation (\texttt{spline}) is applied to increase the number of datapoints to 100. 
+
+\subsection{Noise thresholding}
+
+The following steps are followed to threshold noise (e.g. US speckle) during diastole:
+\begin{itemize}
+	\item The maximum flow or velocity datapoint is identified. Previous datapoints (systolic upstroke) are excluded from the analysis.
+	\item Datapoints whose value is < 20$%$ of the maximum value are identified. Values after the first datapoint to satisfy this condition are set to 0.
+	
+\end{itemize}
+
+\subsection{Downslope projection}
+
+
+
+
+
+
+
+\section{Using \mf}
+
+\mf{} can be used to calculate CV indices from either a pulsatile signal containing several pulses, or a single pulse wave. The input data, $S$, should be prepared as a structure with two fields: $S.v$, a vector of signal amplitudes, and $S.fs$, the sampling frequency of the signal. At its simplest, \pa can be called using
+\begin{center}
+	\texttt{cv\us inds = PulseAnalyse(S);}
+\end{center}
+where \texttt{cv\us inds} is a structure containing individual fields for each of the calculated CV indices (named according to the abbreviations listed in Table \ref{tab:SIs_res}). Each index's field is itself a structure, containing the calculated value (\eg{} \texttt{cv\us inds.SI.v}, which is a median in the case of multiple pulses), and raw values for each pulse (\texttt{cv\us inds.SI.raw}) if the input signal contains multiple pulses.
+
+Additional functionality can be exploited by specifying additional inputs. Firstly, if the subject's height is provided in $S.ht$ then those CV indices which require height will be calculated. Secondly, options can be specified as a second input using
+\begin{center}
+	\texttt{cv\us inds = PulseAnalyse(S, options);}
+\end{center}
+where \texttt{options} is a structure containing the following logical fields:
+\begin{itemize}
+	\item \texttt{exclude\us low\us quality\us data}: whether or not to exclude pulses with a low signal quality in the calculation of a median value for each CV index (only applicable when using an input signal with multiple pulses).
+	\item \texttt{do\us plot}: whether or not to plot an example pulse with fiducial points annotated (similar to those in Figure \ref{fig:fid_pts}).
+\end{itemize}
+
+Additional outputs can also be obtained using
+\begin{center}
+	\texttt{[cv\us inds, fid\us pts, pulses, S\us filt] = PulseAnalyse(S);}
+\end{center}
+where \texttt{fid\us pts} is a structure containing the indices of each fiducial point; \texttt{pulses} is a structure containing the indices of the onsets and peaks of each pulse, and the signal quality of each pulse (a logical where 1 indicates high signal quality); and \texttt{S\us filt} is the filtered pulsatile signal to which these indices correspond.
+
+\section{Further Work}
+\label{sec:further_work}
+
+Ideas for improvement.
+
+\newpage
+
+
+\section*{References}
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{refs,refs2,refs_extra}
+
+\end{document}
+

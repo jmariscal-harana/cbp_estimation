@@ -1,0 +1,577 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.5.4)  12 AUG 2017 15:39
+entering extended mode
+**PulseAnalyse**Manual.tex
+
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\PulseAnalyse  Manual.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\iopart.cls"
+Document Class: iopart 1996/06/10 v0.0 IOP Journals LaTeX article class
+
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\iopart12.clo"
+File: iopart12.clo 1997/01/15 v1.0 LaTeX2e file (size option)
+)
+\c@jnl=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\indentedwidth=\skip43
+\mathindent=\dimen102
+\c@eqnval=\count87
+)
+("C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files\MiKTeX\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count88
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+("C:\Program Files\MiKTeX\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files\MiKTeX\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+("C:\Program Files\MiKTeX\tex\latex\harvard\harvard.sty"
+Package: harvard 
+
+("C:\Program Files\MiKTeX\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files\MiKTeX\tex\latex\latex2html\html.sty"
+("C:\Program Files\MiKTeX\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Program Files\MiKTeX\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+("C:\Program Files\MiKTeX\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen105
+\Hy@linkcounter=\count89
+\Hy@pagecounter=\count90
+
+("C:\Program Files\MiKTeX\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count91
+
+("C:\Program Files\MiKTeX\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count92
+
+("C:\Program Files\MiKTeX\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen106
+\Fld@menulength=\count93
+\Field@Width=\dimen107
+\Fld@charsize=\dimen108
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count94
+\c@Item=\count95
+\c@Hfootnote=\count96
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+("C:\Program Files\MiKTeX\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count97
+\c@bookmark@seq@number=\count98
+
+("C:\Program Files\MiKTeX\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip44
+)
+Package: html 1999/07/19 v1.38 hypertext commands for latex2html (nd, hws, rrm)
+
+\c@part=\count99
+\c@lpart=\count100
+\c@lchapter=\count101
+\c@chapter=\count102
+\c@lsection=\count103
+\c@lsubsection=\count104
+\c@lsubsubsection=\count105
+\c@lparagraph=\count106
+\c@lsubparagraph=\count107
+\c@lsubsubparagraph=\count108
+\ptrfile=\write3
+))
+("C:\Program Files\MiKTeX\tex\latex\multirow\multirow.sty"
+\bigstrutjot=\dimen109
+)
+("C:\Program Files\MiKTeX\tex\latex\oberdiek\epstopdf.sty"
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+("C:\Program Files\MiKTeX\tex\latex\oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+("C:\Program Files\MiKTeX\tex\latex\oberdiek\grfext.sty"
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+))
+("C:\Program Files\MiKTeX\tex\latex\adjustbox\adjustbox.sty"
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+("C:\Program Files\MiKTeX\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+("C:\Program Files\MiKTeX\tex\generic\xkeyval\xkeyval.tex"
+\XKV@toks=\toks15
+\XKV@tempa@toks=\toks16
+\XKV@depth=\count109
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+))
+("C:\Program Files\MiKTeX\tex\latex\adjustbox\adjcalc.sty"
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+("C:\Program Files\MiKTeX\tex\latex\adjustbox\trimclip.sty"
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+("C:\Program Files\MiKTeX\tex\latex\collectbox\collectbox.sty"
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box26
+)
+\tc@llx=\dimen110
+\tc@lly=\dimen111
+\tc@urx=\dimen112
+\tc@ury=\dimen113
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+("C:\Program Files\MiKTeX\tex\latex\adjustbox\tc-pdftex.def"
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen114
+\adjbox@Height=\dimen115
+\adjbox@Depth=\dimen116
+\adjbox@Totalheight=\dimen117
+
+("C:\Program Files\MiKTeX\tex\latex\ifoddpage\ifoddpage.sty"
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count110
+)
+("C:\Program Files\MiKTeX\tex\latex\ltxmisc\varwidth.sty"
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box27
+\sift@deathcycles=\count111
+\@vwid@loff=\dimen118
+\@vwid@roff=\dimen119
+))
+("C:\Program Files\MiKTeX\tex\latex\enumitem\enumitem.sty"
+Package: enumitem 2011/09/28 v3.5.2 Customized lists
+\labelindent=\skip45
+\enit@outerparindent=\dimen120
+\enit@toks=\toks17
+\enit@inbox=\box28
+\enitdp@description=\count112
+)
+("C:\Program Files\MiKTeX\tex\latex\setspace\setspace.sty"
+Package: setspace 2011/12/19 v6.7a set line spacing
+)
+("C:\Program Files\MiKTeX\tex\latex\koma-script\scrextend.sty"
+Package: scrextend 2016/06/14 v3.21 KOMA-Script package (extend other classes w
+ith features of KOMA-Script classes)
+
+("C:\Program Files\MiKTeX\tex\latex\koma-script\scrkbase.sty"
+Package: scrkbase 2016/06/14 v3.21 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+("C:\Program Files\MiKTeX\tex\latex\koma-script\scrbase.sty"
+Package: scrbase 2016/06/14 v3.21 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+("C:\Program Files\MiKTeX\tex\latex\koma-script\scrlfile.sty"
+Package: scrlfile 2016/06/14 v3.21 KOMA-Script package (loading files)
+
+Package scrlfile, 2016/06/14 v3.21 KOMA-Script package (loading files)
+                  Copyright (C) Markus Kohm
+
+)))
+
+LaTeX Warning: Command \@footnotemark  has changed.
+               Check if current package is valid.
+
+Package scrextend Info: unexpected definition of `\@makefnmark'.
+(scrextend)             Trying to patch it on input line 1407.
+("C:\Program Files\MiKTeX\tex\latex\etoolbox\etoolbox.sty"
+Package: etoolbox 2015/08/02 v2.2a e-TeX tools for LaTeX (JAW)
+
+("C:\Program Files\MiKTeX\tex\latex\misc\etex.sty"
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count113
+)
+\etb@tempcnta=\count114
+
+
+Package etoolbox Warning: Patching '\begin' failed!
+(etoolbox)                '\AtBeginEnvironment' will not work.
+
+)
+
+Package scrextend Warning: patching `\@makefnmark' failed.
+(scrextend)                Using hard coded redefinition on input line 1407.
+
+) ("C:\Program Files\MiKTeX\tex\latex\cite\cite.sty"
+LaTeX Info: Redefining \cite on input line 302.
+LaTeX Info: Redefining \nocite on input line 373.
+Package: cite 2010/09/10  v 5.3
+)
+("C:\Program Files\MiKTeX\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen121
+\extrarowheight=\dimen122
+\NC@list=\toks18
+\extratabsurround=\skip46
+\backup@length=\skip47
+
+
+LaTeX Warning: Command \@xhline  has changed.
+               Check if current package is valid.
+
+) ("C:\Program Files\MiKTeX\tex\latex\rotating\rotating.sty"
+Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
+\c@r@tfl@t=\count115
+\rotFPtop=\skip48
+\rotFPbot=\skip49
+\rot@float@box=\box29
+\rot@mess@toks=\toks19
+)
+("C:\Program Files\MiKTeX\tex\latex\filecontents\filecontents.sty"
+Package: filecontents 2011/10/08 v1.3 Create an external file from within a LaT
+eX document
+)
+
+LaTeX Warning: Overwriting file `./refs.bib'.
+
+
+LaTeX Warning: Tab has been converted to Blank Space.
+
+
+
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\PulseAnalyse  Manual.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
+LaTeX Font Info:    ... okay on input line 79.
+
+("C:\Program Files\MiKTeX\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count116
+\scratchdimen=\dimen123
+\scratchbox=\box30
+\nofMPsegments=\count117
+\nofMParguments=\count118
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count119
+\MPscratchDim=\dimen124
+\MPnumerator=\count120
+\makeMPintoPDFobject=\count121
+\everyMPtoPDFconversion=\toks21
+)
+\AtBeginShipoutBox=\box31
+Package hyperref Info: Link coloring OFF on input line 79.
+ ("C:\Program Files\MiKTeX\tex\latex\hyperref\nameref.sty"
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count122
+)
+LaTeX Info: Redefining \ref on input line 79.
+LaTeX Info: Redefining \pageref on input line 79.
+LaTeX Info: Redefining \nameref on input line 79.
+
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\PulseAnalyse  Manual.out")
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\PulseAnalyse  Manual.out")
+\@outlinefile=\write4
+Package hyperref Info: *** compatibility with harvard ****  on input line 79.
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <17.28> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 85.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 104.
+
+
+("C:\Program Files\MiKTeX\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 104.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 104.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 104.
+Package epstopdf Info: Source file: <./Figures/si_techniques_young.eps>
+(epstopdf)                    date: 2017-05-18 15:59:35
+(epstopdf)                    size: 208885 bytes
+(epstopdf)             Output file: <./Figures/si_techniques_young-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2017-05-18 15:59:55
+(epstopdf)                    size: 64143 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/si_techniques_you
+ng-eps-converted-to.pdf ./Figures/si_techniques_young.eps>
+(epstopdf)             \includegraphics on input line 126.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/si_techniques_young-eps-converted-to.pdf, id=38, 1191.45125pt x 325.
+215pt>
+File: ./Figures/si_techniques_young-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use ./Figures/si_techniques_young-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/si_techniques_young-eps-converted-to.pdf use
+d on input line 126.
+(pdftex.def)             Requested size: 178.55725pt x 137.79156pt.
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 131.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 131.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 131.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 131.
+ [1
+
+{C:/Users/pc13/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Documents
+/Google Drive/Work/Code/Pulse Analyse/PulseAnalyse - extracting features from p
+ulse waveforms/Figures/si_techniques_young-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <./Figures/si_points_young.eps>
+(epstopdf)                    date: 2017-04-20 14:58:28
+(epstopdf)                    size: 42998 bytes
+(epstopdf)             Output file: <./Figures/si_points_young-eps-converted-to
+.pdf>
+(epstopdf)                    date: 2017-05-10 18:04:32
+(epstopdf)                    size: 11041 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/si_points_young-e
+ps-converted-to.pdf ./Figures/si_points_young.eps>
+(epstopdf)             \includegraphics on input line 140.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/si_points_young-eps-converted-to.pdf, id=72, 446.66875pt x 748.7975p
+t>
+File: ./Figures/si_points_young-eps-converted-to.pdf Graphic file (type pdf)
+ <use ./Figures/si_points_young-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/si_points_young-eps-converted-to.pdf used on
+ input line 140.
+(pdftex.def)             Requested size: 218.73843pt x 366.6969pt.
+Package epstopdf Info: Source file: <./Figures/si_points_elderly.eps>
+(epstopdf)                    date: 2017-04-20 14:58:20
+(epstopdf)                    size: 43292 bytes
+(epstopdf)             Output file: <./Figures/si_points_elderly-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2017-05-10 18:04:47
+(epstopdf)                    size: 11161 bytes
+(epstopdf)             Command: <epstopdf --outfile=./Figures/si_points_elderly
+-eps-converted-to.pdf ./Figures/si_points_elderly.eps>
+(epstopdf)             \includegraphics on input line 141.
+Package epstopdf Info: Output file is already uptodate.
+
+<./Figures/si_points_elderly-eps-converted-to.pdf, id=73, 446.66875pt x 748.797
+5pt>
+File: ./Figures/si_points_elderly-eps-converted-to.pdf Graphic file (type pdf)
+ <use ./Figures/si_points_elderly-eps-converted-to.pdf>
+Package pdftex.def Info: ./Figures/si_points_elderly-eps-converted-to.pdf used 
+on input line 141.
+(pdftex.def)             Requested size: 218.73843pt x 366.6969pt.
+ [2 <C:/Documents/Google Drive/Work/Code/Pulse Analyse/PulseAnalyse - extractin
+g features from pulse waveforms/Figures/si_points_young-eps-converted-to.pdf> <
+C:/Documents/Google Drive/Work/Code/Pulse Analyse/PulseAnalyse - extracting fea
+tures from pulse waveforms/Figures/si_points_elderly-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 186--186
+[]|$\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 SDPW\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 b\O
+T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 SDPW\OT1/cmr/m/n/10 (\OML/c
+mm/m/it/10 c\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 SDPW\OT1/cmr/
+m/n/10 (\OML/cmm/m/it/10 d\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10  $
+ []
+
+
+Overfull \hbox (27.01459pt too wide) in paragraph at lines 156--198
+ [][] 
+ []
+
+LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 202.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 232.
+
+("C:\Program Files\MiKTeX\tex\latex\base\omlcmr.fd"
+File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 232.
+ [3] [4] [5] [6]
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\PulseAnalyse  Manual.bbl" [7])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
+
+("C:\Documents\Google Drive\Work\Code\Pulse Analyse\PulseAnalyse - extracting f
+eatures from pulse waveforms\PulseAnalyse  Manual.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 281.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
+Package rerunfilecheck Info: File `PulseAnalyse**Manual.out' has not changed.
+(rerunfilecheck)             Checksum: <no file>.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 281.
+ ) 
+Here is how much of TeX's memory you used:
+ 8230 strings out of 493921
+ 122240 string characters out of 3148890
+ 251424 words of memory out of 3000000
+ 11352 multiletter control sequences out of 15000+200000
+ 9155 words of font info for 33 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 44i,11n,34p,1459b,460s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
+m Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKT
+eX/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmmi7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:
+/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program File
+s/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX/fonts
+/type1/public/amsfonts/cm/cmr8.pfb><C:/Program Files/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/
+cmsy7.pfb><C:/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:
+/Program Files/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Fil
+es/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb><C:/Program Files/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX/fonts/type1/pu
+blic/amsfonts/cm/cmtt12.pfb>
+Output written on "PulseAnalyse  Manual.pdf" (8 pages, 333389 bytes).
+PDF statistics:
+ 268 PDF objects out of 1000 (max. 8388607)
+ 46 named destinations out of 1000 (max. 500000)
+ 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+
