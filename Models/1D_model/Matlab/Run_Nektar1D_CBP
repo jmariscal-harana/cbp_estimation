@@ -1,0 +1,4 @@
+cd Nektar_inputFiles/
+chmod u+x command_cloud_22_CBP.txt
+./command_cloud_22_CBP.txt
+mv *.* /media/VirtualUbuntu/.

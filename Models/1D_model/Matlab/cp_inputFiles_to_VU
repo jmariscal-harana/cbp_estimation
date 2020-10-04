@@ -1,0 +1,3 @@
+cp ~/Nektar1D/Haemodynamic_Tools/Version6/CentralBP/Nektar_inputFiles/command_cloud_22_CBP.txt ~/VirtualUbuntu/.
+cp ~/Nektar1D/Haemodynamic_Tools/Version6/CentralBP/Nektar_inputFiles/M116art_*.in ~/VirtualUbuntu/.
+cp ~/Nektar1D/Haemodynamic_Tools/Version6/CentralBP/Nektar_inputFiles/M116art_*.bcs ~/VirtualUbuntu/.

@@ -1,0 +1,10 @@
+Wk2 characteristics:
+Population size: 3125
+Mean +/- standard deviation
+DBP_c [mmHg] & 72.0 $\pm$ 11.7
+MBP_c [mmHg] & 85.9 $\pm$ 12.5
+SBP_c [mmHg] & 100.8 $\pm$ 13.0
+PP_c [mmHg] & 28.8 $\pm$ 3.7
+SV [mL] & 88.4 $\pm$ 12.2
+HR [bpm] & 68.8 $\pm$ 11.3
+CO [L/min] & 6.1 $\pm$ 1.3

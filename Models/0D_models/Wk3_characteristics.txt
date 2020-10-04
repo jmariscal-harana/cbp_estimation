@@ -1,0 +1,10 @@
+Wk3 characteristics:
+Population size: 15625
+Mean +/- standard deviation
+DBP_c [mmHg] & 67.0 $\pm$ 10.9
+MBP_c [mmHg] & 85.9 $\pm$ 12.5
+SBP_c [mmHg] & 114.8 $\pm$ 17.0
+PP_c [mmHg] & 47.8 $\pm$ 12.8
+SV [mL] & 88.4 $\pm$ 12.2
+HR [bpm] & 68.8 $\pm$ 11.3
+CO [L/min] & 6.1 $\pm$ 1.3
