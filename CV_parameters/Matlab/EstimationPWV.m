@@ -5,7 +5,7 @@ function [EST] = EstimationPWV(PATHS,REF,EST)
 switch EST.MethodPWV
 		
 	case {1, 2, 3, 4}	%TT algorithm
-		addpath([PATHS.Root,'Others/PWV_TT'])
+		addpath([PATHS.Functions,'PWV_TT'])
 		
 		SR = round(1/(REF.t_in(2) - REF.t_in(1)));
 
@@ -87,7 +87,7 @@ switch EST.MethodPWV
 % 			set(gca,'YTick',[])
 % 			box on
 % 			set(gca,'FontSize',40)
-% 			addpath([PATHS.Root,'Others/PlotSave/'])
+% 			addpath([PATHS.Functions,'PlotSave/'])
 % 			PATHS.Figures = '/Users/joh15/PhD/THESIS - PhD/v6/Latex/Figures/';
 % 			PlotSave(PATHS.Figures,'f2f_method')
 % 			PlotSave(PATHS.Figures,'least_squares_method')
@@ -96,8 +96,8 @@ switch EST.MethodPWV
 		EST.PWV = REF.TT_length/mean(TT);
 		
 	case 5	%sum of squares
-		addpath([PATHS.Root,'Others/SumOfSquares/'])
-		addpath([PATHS.Root,'Others/InterpolateSpline/'])
+		addpath([PATHS.Functions,'SumOfSquares/'])
+		addpath([PATHS.Functions,'InterpolateSpline/'])
 		
 		P = REF.Pressure;				%[Pa]
 		U = REF.Q_in/REF.Asc_Ao.A_in;	%[m/s]

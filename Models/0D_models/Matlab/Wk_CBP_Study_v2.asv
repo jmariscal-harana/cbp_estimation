@@ -1,0 +1,323 @@
+%%	Main code for the 2-element and 3-element Windkessel study
+%	Input
+%	-REF: parameters used to generate virtual patients
+%	-EST: methods for parameter estimation for virtual patients
+%	-PATHS: folders where required data is stored
+%
+%	Output
+%	-REF: virtual patient data
+%	-EST: estimated pressure using the 2-Wk or 3-Wk model
+%
+%==========================================================================
+%	Jorge Mariscal-Harana, King's College London (original author)
+%	v2.0 (29/08/19) - Based on Wk_CBP_Study
+%   v2.1 (08/03/21) - included relative paths for github
+%
+%==========================================================================
+clear;
+close all;
+dbstop if error
+
+
+%%	REF input parameters
+VirtualClinical = 'Clinical';
+% REF_Dataset = 'pwdb_4374';	% Reference dataset (virtual): 'Wk2', 'Wk3', '55_art', 'pwdb_78', 'pwdb_4374'
+REF_Dataset = 'Isra_AoCoarctation';	% Reference dataset (clinical): 'Sam_Hypertensive','Sam_Normotensive','Isra_AoCoarctation'
+
+
+%%	EST input parameters
+Windkessel		= 'Wk3';		% Windkessel model for cBP estimation
+Scenario		= 'Waveform';	% 'Waveform': pressure waveform available
+								% 'BP': only DBP/MBP/SBP values available
+Windkessel_opt	= 0;			% P_out, C_T, and Z_0 are calculated simultaneously through a Wk3 optimisation
+Plots_EST		= 0;			% 1: show estimation method plots
+
+%	Estimation methods
+MethodLVET		= 3;		% 0: LVET = LVET,reference
+								% 1: LVET from P using Sam's algorithm
+								% 2: LVET from P using Pete's PPG algorithm
+								% 3: LVET from P using WF								
+								% 4: LVET = 0.37*sqrt(T)
+								% 5: Q=0 or max(Q) after min Q
+MethodP_out		= 4;%[1:5];		% 0: P_out = P_out,reference
+								% 1: P_out = 0
+								% 2: P_out = P_dias/2
+								% 3: P_out = 0.7 * DBP (Parragh 2014)
+								% 4: Decay time (Jorge): t = LVET
+								% 5: Decay time (Jorge): t = LVET + 1/3 t_dias
+MethodR_T		= 1;			% 0: R_T = R_T,reference
+								% 1: Scenario 1
+								% 2: Scenario 2
+MethodC_T		= 9;%[1:9];			% 0: C_T = C_T,reference
+								% 1: 2-point exponential fit
+								% 2: Decay time (Jorge): t = LVET
+								% 3: Decay time (Jorge): t = LVET + 1/3 t_dias
+								% 4: Area method
+								% 5: Two-area method
+								% 6: Diastolic pressure method
+								% 7: Pulse pressure method
+								% 8: SV/PP
+								% 9: 3-Wk optimisation
+MethodPWV		= 0;%[1:5];			% 0: PWV = PWV,reference
+								% 1: TT: ascending-descending aorta Q
+								% 2: TT: carotid-femoral P
+								% 3: Least-squares: ascending-descending aorta Q
+								% 4: Least-squares: carotid-femoral P
+								% 5: Sum of squares
+MethodZ_0		= 18;			% 0: Z_0 = Z_0,reference
+								% 1: Z_0 = 0.1*R_T (Murgo1980)
+								% 2: Z_0 = 0.05*R_T (Murgo1980)
+								% 3: Z_0 = (P_mean - P_dias)/Q_peak (Jordi)
+								% 4: rho*PWV/A_d
+								% 5: Freq-domain: 2-12th harmonics (Nichols1977)
+								% 6: Freq-domain: 6-10th harmonics (Segers2000)
+								% 7: Freq-domain: 1-8th harmonics (Clarke et al (1978))
+								% 8: Freq-domain: 1-9th harmonics (Peluso et al (1978))
+								% 9: Freq-domain: 2-10th harmonics (Mitchell et al (1994))
+								% 10: Freq-domain: 3-10th harmonics (Hughes and Parker (2009))
+								% 11: Freq-domain: 4-10th harmonics (Tabima et al (2012))
+								% 12: Freq-domain: 6-8th harmonics (Abel (1971))
+								% 13: Freq-domain: 4-8th harmonics (Qureshi et al (2018))
+								% 14: Early systole up-slope?(Dujardin and Stone (1981))
+								% 15: Least-squares fit for early-systole
+								% 16: P_es to Q_es ratio at time of maximum dQ
+								% 17: P_es to Q_es ratio [t = 0, t = maximum dQ]
+								% 18: 3-Wk optimisation
+
+switch Scenario
+	case 'Waveform'
+		Sc = 'Sc1';
+	case 'BP'
+		Sc = 'Sc2';
+end
+								
+									
+%%	PATHS
+uiwait(msgbox('Please select root folder for the CBP_ESTIMATION repository'));
+PATHS.Root = uigetdir('$HOME');
+% pwd_split=strsplit(pwd,filesep); 
+% PATHS.Root							= [strjoin({pwd_split{1:end-3}}, filesep),'/'];	%Root folder
+PATHS.Clinical                      = '~/PhD/Data/'; %Folder containing clinical datasets
+PATHS.Wk_study						= [PATHS.Root,'Models/0D_models/'];	% Path to the Windkessel study folder
+PATHS.Matlab						= [PATHS.Wk_study,'Matlab/'];	% Path to the main Matlab folder
+PATHS.Matlab_ParameterEstimation	= [PATHS.Root,'CV_parameters/Matlab/'];	% Path to the main Parameter Estimation Matlab folder
+PATHS.Functions                     = [PATHS.Root,'Functions/'];	% Path to useful functions
+PATHS.Output						= [PATHS.Wk_study,'Output/',Windkessel,'/'];
+
+addpath(PATHS.Matlab)
+addpath(PATHS.Matlab_ParameterEstimation)
+addpath([PATHS.Functions,'ExtractReferenceBP/'])
+
+
+%%	REF data: Virtual or Clinical reference dataset
+switch VirtualClinical
+	case 'Virtual'
+		switch REF_Dataset
+			case {'Wk2', 'Wk3'}
+				PATHS.Input = [PATHS.Root,'Windkessel/',REF_Dataset,'_input/'];
+				load([PATHS.Input,REF_Dataset,'_reference.mat'],'REF')
+								
+				%	Format 0-D dataset for CV parameter estimation
+				for jj = 1:length(REF)
+					REF(jj).Dataset			= REF_Dataset;
+					% 			REF(jj).Q_in			= REF(jj).Q_in/10^6;
+					% 			REF(jj).Pressure		= REF(jj).Pressure*133.32;
+					REF(jj).Pressure_CBP	= REF(jj).Pressure*133.32;
+					% 			REF(jj).SV				= REF(jj).SV/10^6;
+					REF(jj).DBP				= min(REF(jj).Pressure);	% DBP
+					REF(jj).SBP				= max(REF(jj).Pressure);	% SBP
+					REF(jj).PWV				= 0;
+					
+					REF_temp(jj)			= ExtractReferenceBP(Scenario,REF(jj));
+				end
+				
+			case '55_art'
+				PATHS.Input = [PATHS.Root,'VirtualDB/55_art/Nektar_outputFiles/Simulations/2018_12_12/'];
+				load([PATHS.Input,REF_Dataset,'_reference.mat'],'REF')
+								
+				%	Format 55-artery dataset for CV parameter estimation
+				for jj = 1:length(REF)
+					REF(jj).Dataset			= REF_Dataset;
+					REF(jj).Pressure		= REF(jj).L_Brachial.ONE_CYCLE.P;
+					REF(jj).Pressure_CBP	= REF(jj).Asc_Ao.ONE_CYCLE.P;
+					REF(jj).t_in			= REF(jj).Asc_Ao.ONE_CYCLE.t;
+					REF(jj).Q_in			= REF(jj).Asc_Ao.ONE_CYCLE.Q;
+					REF(jj).SV				= REF(jj).HAEMO.SV;
+					REF(jj).DBP				= min(REF(jj).Pressure);	% DBP
+					REF(jj).SBP				= max(REF(jj).Pressure);	% SBP
+					
+					REF_temp(jj)			= ExtractReferenceBP(Scenario,REF(jj));
+				end
+				
+			case {'pwdb_78', 'pwdb_4374'}
+				PATHS.Input = [PATHS.Root,'VirtualDB/pwdb/Nektar_outputFiles/Simulations/'];
+				load([PATHS.Input,REF_Dataset,'_reference_v2.mat'],'REF')
+				
+				%	Format Pete's dataset for CV parameter estimation
+				for jj = 1:length(REF)
+					REF(jj).Dataset			= REF_Dataset;
+					switch Scenario
+						case 'Waveform'
+							REF(jj).Pressure		= REF(jj).L_Carotid.ONE_CYCLE.P;	%[Pa]
+						case 'BP'
+							REF(jj).Pressure		= REF(jj).L_Brachial.ONE_CYCLE.P;	%[Pa]
+					end
+					REF(jj).Pressure_CBP	= REF(jj).Asc_Ao.ONE_CYCLE.P;		%[Pa]
+					REF(jj).t_in			= REF(jj).Asc_Ao.ONE_CYCLE.t;		%[s]
+					REF(jj).Q_in			= REF(jj).Asc_Ao.ONE_CYCLE.Q;		%[m3/s]
+					REF(jj).SV				= REF(jj).HAEMO.SV;					%[m3]
+					REF(jj).LVET			= REF(jj).HAEMO.LVET;				%[s]
+					REF(jj).PWV				= REF(jj).PWV;						%[m/s]
+					REF(jj).DBP				= min(REF(jj).Pressure);	% DBP
+					REF(jj).SBP				= max(REF(jj).Pressure);	% SBP
+					
+					REF_temp(jj)			= ExtractReferenceBP(Scenario,REF(jj));
+				end
+				
+			otherwise
+				error('Load a valid dataset')
+		end
+		REF = REF_temp; clear REF_temp
+
+		%	Physiological filter based on the Normotensive and Hypertensive datasets
+		addpath([PATHS.Functions,'Physiological_BP_Filter/'])
+		REF = Physiological_BP_Filter(PATHS,REF);
+		
+	case 'Clinical'
+		switch REF_Dataset
+			case {'Sam_Hypertensive','Sam_Normotensive'}
+				PATHS.REF_data	= [PATHS.Clinical,REF_Dataset,'/'];
+				PATHS.Figures	= [PATHS.REF_data,'Figures/'];
+				load([PATHS.REF_data,REF_Dataset(5:end),'_jmh_v2.mat'],'REF')
+				%	Format REF data for Wk2/Wk3 estimation
+				for jj = 1:length(REF)
+					REF_temp_2(jj).INFO.ID		= REF(jj).INFO.ID;
+					REF_temp_2(jj).Pressure		= REF(jj).Carotid.ONE_CYCLE.P;
+					REF_temp_2(jj).DBP			= min(REF_temp_2(jj).Pressure);	% DBP
+					REF_temp_2(jj).SBP			= max(REF_temp_2(jj).Pressure);	% SBP
+					REF_temp_2(jj).t_in			= REF(jj).Asc_Ao.ONE_CYCLE.t;
+					REF_temp_2(jj).Q_in			= REF(jj).Asc_Ao.ONE_CYCLE.Q;
+					REF_temp_2(jj).Pressure_CBP	= REF(jj).Asc_Ao.ONE_CYCLE.P;	%SphygmoCor cBP
+					REF_temp_2(jj).PWV			= NaN;
+					REF_temp_2(jj).SV			= REF(jj).HAEMO.SV;
+					REF_temp(jj)				= ExtractReferenceBP(Scenario,REF_temp_2(jj));
+				end
+				clear REF_temp_2
+				
+			case 'Isra_AoCoarctation'
+				PATHS.REF_data	= [PATHS.Clinical,'Isra_AoCoarctation/'];
+				PATHS.Figures	= [PATHS.REF_data,'Figures/'];
+				load([PATHS.REF_data,REF_Dataset,'_reference.mat'],'REF')
+				
+				%	1-D aortic simulations failed for 2 patients
+				REF = REF([1:4,6,8:12]);
+				
+				%	Format REF data for Wk2/Wk3 estimation
+				for jj = 1:length(REF)
+% 					REF(jj).Pressure		= REF(jj).Asc_Ao.ONE_CYCLE.P;
+					REF(jj).Pressure		= REF(jj).Desc_Ao_I.ONE_CYCLE.P;
+					REF(jj).DBP				= min(REF(jj).Pressure);	% DBP
+					REF(jj).SBP				= max(REF(jj).Pressure);	% SBP
+					REF(jj).t_in			= REF(jj).Asc_Ao.ONE_CYCLE.t;
+					REF(jj).Q_in			= REF(jj).Asc_Ao.ONE_CYCLE.Q;
+					REF(jj).Pressure_CBP	= REF(jj).Asc_Ao.ONE_CYCLE.P;	%pressure from Asc Ao
+					REF(jj).t_in			= linspace(REF(jj).t_in(1),REF(jj).t_in(end),length(REF(jj).Pressure))';
+					REF(jj).PWV				= NaN;
+					REF(jj).SV				= REF(jj).HAEMO.SV;
+					REF_temp(jj)			= ExtractReferenceBP(Scenario,REF(jj));
+% 					figure, hold on,
+% 					plot(REF(jj).Pressure_CBP,'k')
+% 					plot(REF(jj).Pressure,'--k')
+% 					plot(REF(jj).Q_in,'k')
+				end
+				
+		end
+		REF = REF_temp; clear REF_temp
+end
+			
+
+%%	EST data: estimate CV parameters and Windkessel pressures
+%	Call individual estimation functions for each subject
+addpath([PATHS.Functions,'LVET/'])
+addpath([PATHS.Functions,'PulseAnalyse/'])
+addpath([PATHS.Functions,'P_out/'])
+addpath([PATHS.Functions,'PWV_TT/'])
+addpath([PATHS.Functions,'ImpedanceAnalysis/'])
+addpath([PATHS.Functions,'export_fig'])
+addpath([PATHS.Functions,'InterpolateSpline/'])
+addpath([PATHS.Functions,'P_0_iteration/'])
+
+EST = struct;
+k = 1;
+
+for jj = 1:length(REF)
+	%	1. Estimation parameters
+	EST(jj).ID				= REF(jj).INFO.ID;
+	EST(jj).ID_num			= jj;
+	EST(jj).Windkessel		= Windkessel;
+	
+	%	2. Estimation methods
+	EST(jj).MethodLVET		= MethodLVET;
+	EST(jj).MethodP_out		= MethodP_out;
+	EST(jj).MethodR_T		= MethodR_T;
+	EST(jj).MethodC_T		= MethodC_T;
+	EST(jj).MethodPWV		= MethodPWV;
+	EST(jj).MethodZ_0		= MethodZ_0;
+end
+
+switch Windkessel
+	case 'Wk3'
+		Methods = [num2str(MethodLVET),num2str(MethodP_out),num2str(MethodR_T),num2str(MethodC_T),'_',num2str(MethodPWV),'_',num2str(MethodZ_0)];
+	case 'Wk2'
+		Methods = [num2str(MethodLVET),num2str(MethodP_out),num2str(MethodR_T),num2str(MethodC_T)];
+end
+fprintf('Current estimation method: %s\n',Methods)
+
+for jj = 1:length(REF)
+	%	Estimate parameters	
+	EST_param = ParameterEstimation(PATHS,REF(jj),EST(jj),Plots_EST);
+	
+	if Windkessel_opt == 1
+		warning('P_out, C_T, and Z_0 are calculated simultaneously through a Wk3 optimisation')
+		EST_param = Wk3_optimisation(REF,EST_param,Plots_EST);
+	end
+	
+	%	Estimate cBP
+	EST_temp(jj) = P_0_iteration(EST_param,0,Windkessel);
+
+% 	figure, hold on
+% 	plot(REF(jj).Pressure_CBP,'k')
+% 	plot(EST_temp(jj).Pressure,'--k')	
+end
+
+EST = EST_temp; clear EST_temp
+
+%	Save parameter data
+if Windkessel_opt == 1
+	save([PATHS.Output,REF_Dataset,'_ref_',Windkessel,'_Wk3_opt_',Sc],'EST')
+else
+	save([PATHS.Output,REF_Dataset,'_ref_',Windkessel,'_',Methods,'_',Sc],'EST')
+end
+
+
+%%
+restoredefaultpath
+
+
+%%	Wk3 optimisation
+function [EST] = Wk3_optimisation(REF,EST,Plots_EST)
+t = REF.t_in;	%[s]
+Q = REF.Q_in;	%[m3/s]
+P = REF.Pressure;	%[Pa]
+P_out = EST.P_out;	%[Pa]
+R_T	= EST.R_T;	%[Pa*s/m3]
+C_T = EST.C_T;	%[m3/Pa]
+Z_0 = EST.Z_0;
+R_2 = R_T - Z_0;
+[Z_0, R_2, C_T, P_out] = RCR_EstimationCBP_v2(P,Q,t,Z_0,R_2,C_T,P_out,Plots_EST);
+EST.P_out = P_out;
+EST.C_T = C_T;
+EST.Z_0 = Z_0;
+EST = EstimationTau(EST);
+end
+

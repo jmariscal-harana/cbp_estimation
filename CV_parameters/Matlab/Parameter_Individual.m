@@ -107,7 +107,7 @@ switch REF_Dataset
 		PATHS.Input = [PATHS.Root,'Windkessel/',REF_Dataset,'_input/'];
 		load([PATHS.Input,REF_Dataset,'_reference_v2.mat'],'REF')
 		
-		addpath([PATHS.Root,'Others/ExtractReferenceBP/']);
+		addpath([PATHS.Functions,'ExtractReferenceBP/']);
 		
 		%	Format 0-D dataset for CV parameter estimation
 		for jj = 1:length(REF)
@@ -131,14 +131,14 @@ switch REF_Dataset
 		REF = REF_temp; clear REF_temp
 				
 		%	Physiological filter based on the Normotensive and Hypertensive datasets
-		addpath([PATHS.Root,'Others/Physiological_BP_Filter/'])
+		addpath([PATHS.Functions,'Physiological_BP_Filter/'])
 		REF = Physiological_BP_Filter(PATHS,REF);
 		
 	case '55_art'
 		PATHS.Input = [PATHS.Root,'VirtualDB/55_art/Nektar_outputFiles/Simulations/2018_12_12/'];
 		load([PATHS.Input,REF_Dataset,'_reference.mat'],'REF')
 		
-		addpath([PATHS.Root,'Others/ExtractReferenceBP/']);
+		addpath([PATHS.Functions,'ExtractReferenceBP/']);
 		
 		%	Format 55-artery dataset for CV parameter estimation
 		for jj = 1:length(REF)
@@ -161,7 +161,7 @@ switch REF_Dataset
 		load([PATHS.Input,REF_Dataset,'_reference_v2.mat'],'REF')
 		warning('Peripheral BP for Scenario 1 from carotid wave (previously brachial)')
 		
-		addpath([PATHS.Root,'Others/ExtractReferenceBP/'])
+		addpath([PATHS.Functions,'ExtractReferenceBP/'])
 		
 		%	Format Pete's dataset for CV parameter estimation
 		for jj = 1:length(REF)
@@ -198,7 +198,7 @@ switch REF_Dataset
 % 		figure, hold on, plot(MBP_p - MBP_c,'o')
 		
 		%	Physiological filter based on the Normotensive and Hypertensive datasets
-		addpath([PATHS.Root,'Others/Physiological_BP_Filter/'])
+		addpath([PATHS.Functions,'Physiological_BP_Filter/'])
 		REF = Physiological_BP_Filter(PATHS,REF);
 		
 	otherwise
@@ -211,13 +211,13 @@ load('/Users/joh15/Haemodynamic_Tools/Version6/ParameterEstimation/Output/pwdb_4
 
 
 %%	EST data: estimate CV parameters
-addpath([PATHS.Root,'Others/LVET/'])
-addpath([PATHS.Root,'Others/PulseAnalyse/'])
-addpath([PATHS.Root,'Others/P_out/'])
-addpath([PATHS.Root,'Others/PWV_TT/'])
-addpath([PATHS.Root,'Others/ImpedanceAnalysis/'])
-addpath([PATHS.Root,'Others/export_fig'])
-addpath([PATHS.Root,'Others/P_0_iteration/'])
+addpath([PATHS.Functions,'LVET/'])
+addpath([PATHS.Functions,'PulseAnalyse/'])
+addpath([PATHS.Functions,'P_out/'])
+addpath([PATHS.Functions,'PWV_TT/'])
+addpath([PATHS.Functions,'ImpedanceAnalysis/'])
+addpath([PATHS.Functions,'export_fig'])
+addpath([PATHS.Functions,'P_0_iteration/'])
 
 EST = struct;
 k = 1;

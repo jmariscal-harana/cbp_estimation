@@ -20,7 +20,7 @@ switch EST.MethodZ_0
 		EST.Z_0 = Z_0;
 		
 	case {5,6,7,8,9,10,11,12,13}
-		addpath([PATHS.Root,'Others/ImpedanceAnalysis/'])
+		addpath([PATHS.Functions,'ImpedanceAnalysis/'])
 		
 		%	Ensure that P vector starts from DBP
 		P_raw = REF.Pressure;
@@ -59,7 +59,7 @@ switch EST.MethodZ_0
 		end
 		
 		%	Same vector length required
-		addpath([PATHS.Root,'Others/InterpolateSpline/'])
+		addpath([PATHS.Functions,'InterpolateSpline/'])
 		[P_ref, Q_ref] = InterpolateSpline(REF.t_in,P_raw,REF.Q_in);
 
 		%	Early systole (_es) defined as [t = 0, t = Q_peak]
@@ -187,7 +187,7 @@ switch EST.MethodZ_0
 		end
 		
 	case 18	%Optimised Wk3 parameters (faster and more general)
-		addpath('~/Haemodynamic_Tools/Version6/Others/ImpedanceAnalysis/')
+		addpath([PATHS.Functions,'ImpedanceAnalysis/'])
 		t = REF.t_in;	%[s]
 		Q = REF.Q_in;	%[m3/s]
 		P = REF.Pressure;	%[Pa]
@@ -199,7 +199,7 @@ switch EST.MethodZ_0
 		C_T_temp = EST_temp.C_T;		
 		Z_0_temp = R_T*0.05;
 		R_2 = R_T - Z_0_temp;
-		[Z_0] = RCR_EstimationCBP_v2(P,Q,t,Z_0_temp,R_2,C_T_temp,P_out,EST.Plots);
+		[Z_0] = RCR_EstimationCBP_v2(PATHS,P,Q,t,Z_0_temp,R_2,C_T_temp,P_out,EST.Plots);
 		EST.Z_0	= Z_0;	%[Pa*s/m3]
 		
 	otherwise

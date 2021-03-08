@@ -31,7 +31,7 @@ Subject = Data_waves(Subject_ID);
 
 
 %%	Plot pressure and flow at central and peripheral locations
-addpath('~/Haemodynamic_Tools/Version6/Others/PlotSave/')
+addpath([PATHS.Functions,'PlotSave/'])
 
 %	Pressure
 figure(1)

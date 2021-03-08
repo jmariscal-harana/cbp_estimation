@@ -12,7 +12,7 @@ switch EST.MethodP_out
 		EST.P_out = 0.7*REF.DBP;
 		
 	case {4,5}	%Decay time methods
-		addpath([PATHS.Root,'Others/P_out'])
+		addpath([PATHS.Functions,'P_out'])
 		Pressure = REF.Pressure;
 		T = EST.t_in(end);
 		LVET = EST.LVET;

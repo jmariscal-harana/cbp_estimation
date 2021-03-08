@@ -5,7 +5,7 @@ function [EST] = EstimationC_T(PATHS,REF,EST)
 
 switch EST.MethodC_T			
 	case {1,2,3}	%Exponential fit methods
-		addpath([PATHS.Root,'Others/P_out'])
+		addpath([PATHS.Functions,'P_out'])
 		Pressure = REF.Pressure;
 		T = EST.t_in(end);
 		LVET = EST.LVET;
@@ -63,7 +63,7 @@ switch EST.MethodC_T
 		Q = REF.Q_in;
 		t = REF.t_in;
 		
-		addpath([PATHS.Root,'Others/InterpolateSpline/'])
+		addpath([PATHS.Functions,'InterpolateSpline/'])
 		[P,Q] = InterpolateSpline(t,P,Q);
 		t = linspace(REF.t_in(1),REF.t_in(end),length(P));
 		dt = t(2) - t(1);
@@ -105,7 +105,7 @@ switch EST.MethodC_T
 		end		
 		
 	case 9	%Optimised Wk3 parameters (faster and more general)
-		addpath('~/Haemodynamic_Tools/Version6/Others/ImpedanceAnalysis/')
+		addpath([PATHS.Functions,'ImpedanceAnalysis/'])
 		t = REF.t_in;	%[s]
 		Q = REF.Q_in;	%[m3/s]
 		P = REF.Pressure;	%[Pa]
@@ -117,7 +117,7 @@ switch EST.MethodC_T
 		C_T_temp = EST_temp.C_T;	%[m3/Pa]
 		Z_0 = EST.Z_0;
 		R_2 = R_T - Z_0;
-		[~,~,C_T] = RCR_EstimationCBP_v2(P,Q,t,Z_0,R_2,C_T_temp,P_out,EST.Plots);
+		[~,~,C_T] = RCR_EstimationCBP_v2(PATHS,P,Q,t,Z_0,R_2,C_T_temp,P_out,EST.Plots);
 		EST.C_T	= C_T;	%[Pa*s/m3]		
 		
 	otherwise
@@ -197,7 +197,7 @@ if EST.Plots == 1
 	legend boxoff
 	set(gca,'FontSize',40)
 	
-	addpath([PATHS.Root,'Others/PlotSave/'])
+	addpath([PATHS.Functions,'PlotSave/'])
 	PlotSave(PATHS.Figures,'C_T_DBP_method')
 end
 

@@ -11,6 +11,7 @@
 %==========================================================================
 %	Jorge Mariscal-Harana, King's College London (original author)
 %	v2.0 (29/08/19) - Based on Wk_CBP_Study
+%   v2.1 (08/03/21) - included relative paths for github
 %
 %==========================================================================
 clear;
@@ -19,13 +20,13 @@ dbstop if error
 
 
 %%	REF input parameters
-VirtualClinical = 'Clinical';
-% REF_Dataset = 'pwdb_4374';	% Reference dataset (virtual): 'Wk2', 'Wk3', '55_art', 'pwdb_78', 'pwdb_4374'
-REF_Dataset = 'Isra_AoCoarctation';	% Reference dataset (clinical): 'Sam_Hypertensive','Sam_Normotensive','Isra_AoCoarctation'
+VirtualClinical = 'Virtual';
+REF_Dataset = '55_art';	% Reference dataset (virtual): 'Wk2', 'Wk3', '55_art', 'pwdb_78', 'pwdb_4374'
+% REF_Dataset = 'Isra_AoCoarctation';	% Reference dataset (clinical): 'Sam_Hypertensive','Sam_Normotensive','Isra_AoCoarctation'
 
 
 %%	EST input parameters
-Windkessel		= 'Wk3';		% Windkessel model for cBP estimation
+Windkessel		= 'Wk2';		% Windkessel model for cBP estimation
 Scenario		= 'Waveform';	% 'Waveform': pressure waveform available
 								% 'BP': only DBP/MBP/SBP values available
 Windkessel_opt	= 0;			% P_out, C_T, and Z_0 are calculated simultaneously through a Wk3 optimisation
@@ -92,15 +93,20 @@ end
 								
 									
 %%	PATHS
-PATHS.Root							= '~/Haemodynamic_Tools/Version6/';	%Root folder containing all other folders
-PATHS.Wk_study						= [PATHS.Root,'Windkessel/'];	% Path to the Windkessel study folder
+% uiwait(msgbox('Please select root folder for the CBP_ESTIMATION repository'));
+% PATHS.Root = [uigetdir('~/'), '/'];
+pwd_split=strsplit(pwd,filesep); 
+PATHS.Root							= [strjoin({pwd_split{1:end-3}}, filesep),'/'];	%Root folder
+PATHS.Data                          = [PATHS.Root,'Datasets/']; %Folder containing datasets
+PATHS.Wk_study						= [PATHS.Root,'Models/0D_models/'];	% Path to the Windkessel study folder
 PATHS.Matlab						= [PATHS.Wk_study,'Matlab/'];	% Path to the main Matlab folder
-PATHS.Matlab_ParameterEstimation	= [PATHS.Root,'ParameterEstimation/Matlab/'];	% Path to the main Parameter Estimation Matlab folder
-PATHS.Output						= [PATHS.Wk_study,'Output/',Windkessel,'/'];	% Path to the main Parameter Estimation Matlab folder
+PATHS.Matlab_ParameterEstimation	= [PATHS.Root,'CV_parameters/Matlab/'];	% Path to the main Parameter Estimation Matlab folder
+PATHS.Functions                     = [PATHS.Root,'Functions/'];	% Path to useful functions
+PATHS.Output						= [PATHS.Wk_study,'Output/',Windkessel,'/'];
 
 addpath(PATHS.Matlab)
 addpath(PATHS.Matlab_ParameterEstimation)
-addpath([PATHS.Root,'Others/ExtractReferenceBP/'])
+addpath([PATHS.Functions,'ExtractReferenceBP/'])
 
 
 %%	REF data: Virtual or Clinical reference dataset
@@ -108,11 +114,9 @@ switch VirtualClinical
 	case 'Virtual'
 		switch REF_Dataset
 			case {'Wk2', 'Wk3'}
-				PATHS.Input = [PATHS.Root,'Windkessel/',REF_Dataset,'_input/'];
-				load([PATHS.Input,REF_Dataset,'_reference.mat'],'REF')
-				
-				addpath([PATHS.Root,'Others/ExtractReferenceBP/']);
-				
+				PATHS.Input = PATHS.Data;
+				load([PATHS.Input,REF_Dataset,'_reference_v2.mat'],'REF')
+								
 				%	Format 0-D dataset for CV parameter estimation
 				for jj = 1:length(REF)
 					REF(jj).Dataset			= REF_Dataset;
@@ -128,11 +132,9 @@ switch VirtualClinical
 				end
 				
 			case '55_art'
-				PATHS.Input = [PATHS.Root,'VirtualDB/55_art/Nektar_outputFiles/Simulations/2018_12_12/'];
-				load([PATHS.Input,REF_Dataset,'_reference.mat'],'REF')
-				
-				addpath([PATHS.Root,'Others/ExtractReferenceBP/']);
-				
+				PATHS.Input = PATHS.Data;
+				load([PATHS.Input,REF_Dataset,'_reference_v2.mat'],'REF')
+								
 				%	Format 55-artery dataset for CV parameter estimation
 				for jj = 1:length(REF)
 					REF(jj).Dataset			= REF_Dataset;
@@ -148,10 +150,8 @@ switch VirtualClinical
 				end
 				
 			case {'pwdb_78', 'pwdb_4374'}
-				PATHS.Input = [PATHS.Root,'VirtualDB/pwdb/Nektar_outputFiles/Simulations/'];
+				PATHS.Input = PATHS.Data;
 				load([PATHS.Input,REF_Dataset,'_reference_v2.mat'],'REF')
-				
-				addpath([PATHS.Root,'Others/ExtractReferenceBP/'])
 				
 				%	Format Pete's dataset for CV parameter estimation
 				for jj = 1:length(REF)
@@ -180,14 +180,13 @@ switch VirtualClinical
 		REF = REF_temp; clear REF_temp
 
 		%	Physiological filter based on the Normotensive and Hypertensive datasets
-		addpath([PATHS.Root,'Others/Physiological_BP_Filter/'])
+		addpath([PATHS.Functions,'Physiological_BP_Filter/'])
 		REF = Physiological_BP_Filter(PATHS,REF);
 		
 	case 'Clinical'
 		switch REF_Dataset
 			case {'Sam_Hypertensive','Sam_Normotensive'}
-				PATHS.REF_data	= ['~/Clinical_data/',REF_Dataset,'/'];
-				PATHS.Figures	= [PATHS.REF_data,'Figures/'];
+				PATHS.REF_data	= PATHS.Data;
 				load([PATHS.REF_data,REF_Dataset(5:end),'_jmh_v2.mat'],'REF')
 				%	Format REF data for Wk2/Wk3 estimation
 				for jj = 1:length(REF)
@@ -205,9 +204,8 @@ switch VirtualClinical
 				clear REF_temp_2
 				
 			case 'Isra_AoCoarctation'
-				PATHS.REF_data	= '~/Clinical_Data/Isra_AoCoarctation/';
-				PATHS.Figures	= [PATHS.REF_data,'Figures/'];
-				load([PATHS.REF_data,REF_Dataset,'_reference.mat'],'REF')
+				PATHS.REF_data	= PATHS.Data;
+				load([PATHS.REF_data,REF_Dataset,'_reference_v2.mat'],'REF')
 				
 				%	1-D aortic simulations failed for 2 patients
 				REF = REF([1:4,6,8:12]);
@@ -238,14 +236,14 @@ end
 
 %%	EST data: estimate CV parameters and Windkessel pressures
 %	Call individual estimation functions for each subject
-addpath([PATHS.Root,'Others/LVET/'])
-addpath([PATHS.Root,'Others/PulseAnalyse/'])
-addpath([PATHS.Root,'Others/P_out/'])
-addpath([PATHS.Root,'Others/PWV_TT/'])
-addpath([PATHS.Root,'Others/ImpedanceAnalysis/'])
-addpath([PATHS.Root,'Others/export_fig'])
-addpath([PATHS.Root,'Others/InterpolateSpline/'])
-addpath([PATHS.Root,'Others/P_0_iteration/'])
+addpath([PATHS.Functions,'LVET/'])
+addpath([PATHS.Functions,'PulseAnalyse/'])
+addpath([PATHS.Functions,'P_out/'])
+addpath([PATHS.Functions,'PWV_TT/'])
+addpath([PATHS.Functions,'ImpedanceAnalysis/'])
+addpath([PATHS.Functions,'export_fig'])
+addpath([PATHS.Functions,'InterpolateSpline/'])
+addpath([PATHS.Functions,'P_0_iteration/'])
 
 EST = struct;
 k = 1;

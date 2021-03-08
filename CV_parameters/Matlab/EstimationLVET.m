@@ -4,7 +4,7 @@ function [EST] = EstimationLVET(PATHS,REF,EST)
 
 switch EST.MethodLVET
 	case 1
-		addpath([PATHS.Root,'Others/LVET/'])
+		addpath([PATHS.Functions,'LVET/'])
 		[ind_dic,ind_dia] = valve_closure(PATHS,REF.Pressure',REF.t_in(end),EST.Plots);
  		LVET_index = ind_dic;
 		LVET_index = ind_dia;
@@ -13,7 +13,7 @@ switch EST.MethodLVET
 		EST.LVET = REF.t_in(LVET_index);
 		
 	case 2	%10.1088/1361-6579/aabe6a
-		addpath([PATHS.Root,'Others/PulseAnalyse/'])
+		addpath([PATHS.Functions,'PulseAnalyse/'])
 		Wave.v = REF.Pressure;
 		Wave.fs = round(1/(REF.t_in(2) - REF.t_in(1)));	%1/dt
 		Options.do_plot = false;
@@ -51,7 +51,7 @@ switch EST.MethodLVET
 		EST.LVET = A_men*sqrt(REF.t_in(end));	%empirical eq: 10.1111/j.1542-474X.1997.tb00325.x
 		
 	case 5
-		addpath([PATHS.Root,'Others/LVET/'])
+		addpath([PATHS.Functions,'LVET/'])
 		EST.LVET = LVET_from_Q(PATHS,REF.Q_in,REF.t_in,EST.Plots);
 		
 	otherwise

@@ -105,7 +105,7 @@ switch Dataset
 		load([PATHS.Input,Dataset,'_reference.mat'],'REF')
 		Scale_P_filt = 1;	%Dataset BP values given in mmHg
 		
-		addpath([PATHS.Root,'Others/ExtractReferenceBP/']);
+		addpath([PATHS.Functions,'ExtractReferenceBP/']);
 
 		%	Format 55-artery dataset for Wk2/Wk3 estimation
 		for jj = 1:length(REF)
@@ -128,7 +128,7 @@ switch Dataset
 		load([PATHS.Input,Dataset,'_reference.mat'],'REF')
 		Scale_P_filt = 133.32;	%Dataset BP values given in Pa
 
-		addpath([PATHS.Root,'Others/ExtractReferenceBP/'])
+		addpath([PATHS.Functions,'ExtractReferenceBP/'])
 		
 		%	Format Pete's dataset for Wk2/Wk3 estimation
 		for jj = 1:length(REF)
@@ -154,18 +154,18 @@ switch Dataset
 end
 
 %	Physiological filter based on the Normotensive and Hypertensive datasets
-addpath([PATHS.Root,'Others/Physiological_BP_Filter/'])
+addpath([PATHS.Functions,'Physiological_BP_Filter/'])
 REF = Physiological_BP_Filter(PATHS,REF,Scale_P_filt); clear REF_temp
 
 		
 %%	EST data: estimate CV parameters and calculate RMSE
-addpath([PATHS.Root,'Others/LVET/'])
-addpath([PATHS.Root,'Others/PulseAnalyse/'])
-addpath([PATHS.Root,'Others/P_out/'])
-addpath([PATHS.Root,'Others/PWV_TT/'])
-addpath([PATHS.Root,'Others/ImpedanceAnalysis/'])
-addpath([PATHS.Root,'Others/export_fig'])
-addpath([PATHS.Root,'Others/P_0_iteration/'])
+addpath([PATHS.Functions,'LVET/'])
+addpath([PATHS.Functions,'PulseAnalyse/'])
+addpath([PATHS.Functions,'P_out/'])
+addpath([PATHS.Functions,'PWV_TT/'])
+addpath([PATHS.Functions,'ImpedanceAnalysis/'])
+addpath([PATHS.Functions,'export_fig'])
+addpath([PATHS.Functions,'P_0_iteration/'])
 
 EST = struct;
 k = 1;

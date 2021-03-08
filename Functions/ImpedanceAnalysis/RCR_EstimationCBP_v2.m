@@ -1,9 +1,9 @@
-function [R_1, R_2, C_T, P_out] = RCR_EstimationCBP_v2(P_in,Q_in,t,R_1,R_2,C_T,P_out,Plots)
+function [R_1, R_2, C_T, P_out] = RCR_EstimationCBP_v2(PATHS,P_in,Q_in,t,R_1,R_2,C_T,P_out,Plots)
 P_in = P_in(:)';	
 Q_in = Q_in(:)';
 
 %	Same vector length required
-addpath('~/Haemodynamic_Tools/Version6/Others/InterpolateSpline/')
+addpath([PATHS.Functions,'InterpolateSpline/'])
 [P_in,Q_in,t] = InterpolateSpline(t,P_in,Q_in);
 
 P_in = P_in(:)';	
