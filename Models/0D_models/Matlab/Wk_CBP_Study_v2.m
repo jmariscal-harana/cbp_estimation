@@ -21,12 +21,12 @@ dbstop if error
 
 %%	REF input parameters
 VirtualClinical = 'Virtual';
-REF_Dataset = '55_art';	% Reference dataset (virtual): 'Wk2', 'Wk3', '55_art', 'pwdb_78', 'pwdb_4374'
+REF_Dataset = 'pwdb_78';	% Reference dataset (virtual): 'Wk2', 'Wk3', '55_art', 'pwdb_78', 'pwdb_4374'
 % REF_Dataset = 'Isra_AoCoarctation';	% Reference dataset (clinical): 'Sam_Hypertensive','Sam_Normotensive','Isra_AoCoarctation'
 
 
 %%	EST input parameters
-Windkessel		= 'Wk2';		% Windkessel model for cBP estimation
+Windkessel		= 'Wk3';		% Windkessel model for cBP estimation
 Scenario		= 'Waveform';	% 'Waveform': pressure waveform available
 								% 'BP': only DBP/MBP/SBP values available
 Windkessel_opt	= 0;			% P_out, C_T, and Z_0 are calculated simultaneously through a Wk3 optimisation
@@ -93,10 +93,10 @@ end
 								
 									
 %%	PATHS
-% uiwait(msgbox('Please select root folder for the CBP_ESTIMATION repository'));
-% PATHS.Root = [uigetdir('~/'), '/'];
-pwd_split=strsplit(pwd,filesep); 
-PATHS.Root							= [strjoin({pwd_split{1:end-3}}, filesep),'/'];	%Root folder
+uiwait(msgbox('Please select root folder for the CBP_ESTIMATION repository'));
+PATHS.Root = [uigetdir('~/'), '/'];
+% pwd_split=strsplit(pwd,filesep); 
+% PATHS.Root							= [strjoin({pwd_split{1:end-3}}, filesep),'/'];	%Root folder
 PATHS.Data                          = [PATHS.Root,'Datasets/']; %Folder containing datasets
 PATHS.Wk_study						= [PATHS.Root,'Models/0D_models/'];	% Path to the Windkessel study folder
 PATHS.Matlab						= [PATHS.Wk_study,'Matlab/'];	% Path to the main Matlab folder
